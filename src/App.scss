@@ -1,0 +1,40 @@
+body{
+    color: white;
+    background-color: #282c34;
+    font-size: calc(10px + 2vmin);
+}
+    
+    header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main{
+        // height: 100px;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div{                 
+                        
+            display: flex;
+            align-items: center;
+            justify-content: space-between;                  
+        }
+    }
+    footer {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        button {
+            color: green;
+            height: 40px;
+            margin: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 30px;
+        }
+    }
