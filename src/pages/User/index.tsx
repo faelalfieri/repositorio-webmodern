@@ -1,10 +1,18 @@
 import React from 'react'
-import './index.scss'
+import { useNavigate } from 'react-router-dom'
+
+import { userService } from '../../services/user.sevice'
+import { User } from '../../models/user'
+
 import MyInput from '../../components/MyInput'
+
+import './index.scss'
 
 export default function UserPage() {
 
   // Carregar os dasdos para atualizar o usuário
+
+  const navigate = useNavigate()
 
   const [name, setName] = React.useState('')
   const [username, setUsername] = React.useState('')
@@ -29,7 +37,19 @@ export default function UserPage() {
       return
     }
 
-    alert('usuário salvo com sucesso!')
+    const user: User = {
+      name, username, password
+    }
+    userService.create(user).then(saved => {      
+        alert('Usuário salvo com sucesso!')
+        navigate(-1)      
+    }).catch((error: Error) => {
+      if (error.cause === 400) {
+        alert('Usuário já existe')
+      } else{
+        navigate('/login')
+      }
+    })    
   }
 
   return (

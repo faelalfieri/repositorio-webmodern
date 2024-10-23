@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import MyInput from '../../components/MyInput'
+import * as authService from '../../services/auth.service'
 import './index.scss'
 
 export default function LoginPage() {
@@ -9,13 +10,20 @@ export default function LoginPage() {
   let username = ''
   let password = ''
 
-  function signIn(){
-    if(username === 'rfalfieri' && password === '123456'){
-      navigate('/user/create')
-    }else{
-      alert('Usuário/senha inválido(a)s')
-    }
+  function signIn() {
+    authService.login(username, password).then(isLogged => {
+
+      if (isLogged) {
+        navigate('/home')
+      } else {
+        alert('Login/senha inválido(a)s')
+      }
+    }).catch(error => {
+      console.error(error)
+      alert('Login/senha inválido(a)s')
+    })
   }
+
 
   return (
     <div className='login-page'>
@@ -24,10 +32,10 @@ export default function LoginPage() {
       </header>
 
       <main>
-        <MyInput id='username' label='Login' change={value => username = value}/>  
+        <MyInput id='username' label='Login' change={value => username = value} />
 
-        <MyInput id='password' label='Senha' change={value => password = value} type='password'/>    
-        
+        <MyInput id='password' label='Senha' change={value => password = value} type='password' />
+
       </main>
 
       <footer>
