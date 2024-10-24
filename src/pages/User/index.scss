@@ -1,10 +1,18 @@
 .user-page{
 
     main{        
-    height: 200px;
+        height: 200px;
 
     div{        
         width: 380px;
+    }
+   }
+
+   footer{
+    .goBack{
+        color:gray ;
+        border-radius: 8px;
+        border:none
     }
    }
 
